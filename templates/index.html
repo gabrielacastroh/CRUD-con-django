@@ -1,0 +1,45 @@
+{% extends "plantilla.html" %} {% block body %}
+
+<div style="color: black;" class="mt-5 justify-content-center">
+    <div class="row">
+        <div class="col-sm-5 mx-5">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h4 class="card-title">CRUD DE ESTUDIANTES</h4>
+                    <p class="card-text">Ingresar estudiante. <br>Modificar estudiante.<br>Eliminar estudiante.</p>
+                    <a href="registrar-estudiante/" class="btn btn-primary ">Crear</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-5">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h4 class="card-title">CRUD DE PROFESORES</h4>
+                    <p class="card-text">Ingresar profesor. <br>Modificar profesor.<br>Eliminar profesor.</p>
+                    <a href="/registrar-profesor/" class="btn btn-primary">Crear</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row my-5">
+        <div class="col-sm-5 mx-5">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h4 class="card-title">CRUD DE ASIGNATURAS</h4>
+                    <p class="card-text">Ingresar asignaturas. <br>Modificar asignaturas.<br>Eliminar asignaturas.</p>
+                    <a href="/registrar-asignatura/" class="btn btn-primary ">Crear</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-5">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h4 class="card-title">CRUD DE CLASES</h4>
+                    <p class="card-text">Ingresar profesor. <br>Modificar profesor.<br>Eliminar profesor.</p>
+                    <a href="/registrar-clase/" class="btn btn-primary">Crear</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

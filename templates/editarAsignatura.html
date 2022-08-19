@@ -1,0 +1,50 @@
+{% extends "plantilla.html" %} {% block body %}
+
+<div class="mt-2">
+    <h1 class="text-center mb-5">Editar Asignatura</h1>
+    <div class="row justify-content-center">
+        <form class="row" method="post" action="/asignatura/{{asignatura.id}}">
+            {% csrf_token %}
+            <div class="row justify-content-center">
+                <div class="mb-3 col-4">
+                    <label for="nombre" class="form-label">Nombre</label>
+                    <input name="nombre" type="text" class="form-control" id="nombre" placeholder="Nombre de asignatura"
+                        value="{{asignatura.nombre}}">
+                </div>
+                <div class="mb-3 col-4">
+                    <label for="salon" class="form-label">Salón</label>
+                    <input name="salon" type="text" class="form-control" id="salon" placeholder="Ingresa el salón"
+                        value="{{asignatura.salon}}">
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="mb-3 col-4">
+                    <label for="horario" class="form-label">Horario</label>
+                    <input name="horario" type="text" class="form-control" id="horario" placeholder="Ingresa el horario"
+                        value="{{asignatura.horario}}">
+                </div>
+                <div class="mb-4 col-4">
+                    <label for="profesor" class="form-label">Profesor</label>
+                    <select class="form-select" name="profesor" id="profesor">
+                        <option class="invisible" value="{{asignatura.profesor_id}}" selected>{{asignatura.profesor.nombre}} {{asignatura.profesor.apellido}}</option>
+
+                        {% for reg in profesor %}
+                        <option name="profesor" value="{{ reg.id }}">
+                            {{ reg.nombre }} {{reg.apellido}}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-4 text-center">
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+</div>
+{% endblock %}

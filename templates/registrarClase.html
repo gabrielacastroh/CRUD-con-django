@@ -1,0 +1,67 @@
+{% extends "plantilla.html" %} {% block body %}
+
+<div class="mt-2">
+    <h1 class="text-center mb-5">Registrar Clase</h1>
+    <div class="row justify-content-center">
+        <form class="row" method="post" action="/registrar-clase/">
+            {% csrf_token %}
+            <div class="row justify-content-center">
+                <div class="mb-4 col-4">
+                    <label for="estudiante" class="form-label">Estudiante</label>
+                    <select class="form-select" name="estudiante" id="estudiante">
+                        <option selected>--Selecciona el Estudiante--</option>
+                        {% for reg in estudiante %}
+                        <option name="estudiante_id" value="{{ reg.id }}">
+                            {{ reg.nombre }} {{reg.apellido}} -- {{reg.programaAcademico}}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="mb-4 col-4">
+                    <label for="asignatura" class="form-label">Asignatura</label>
+                    <select class="form-select" name="asignatura" id="asignatura">
+                        <option selected>--Selecciona la Asignatura--</option>
+                        {% for reg in asignatura %}
+                        <option name="asignatura_id" value="{{ reg.id }}">
+                            {{ reg.nombre }} -- {{reg.salon}} -- {{reg.horario}} -- {{reg.profesor}}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-4 text-center">
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+    <div class="col-12 mt-5">
+        <table class="table table-striped table-light table-bordered-border text-center">
+            <thead>
+                <tr>
+                    <th scope="col">ESTUDIANTE</th>
+                    <th scope="col">ASIGNATURA</th>
+                 
+                    <th scope="col">ACCIONES</th>
+                </tr>
+            </thead>
+            <tbody class="student-list">
+                {% for reg in clase %}
+                <tr>
+                    <td>{{reg.estudiante}}</td>
+                    <td>{{reg.asignatura}}</td>
+                    <td>
+                        <a href="/buscar-clase/{{reg.id}}" class="btn btn-warning btn-sm edit"
+                            role="button">Editar</a>
+                        <a href="/eliminar-clase/{{reg.id}}" class="btn btn-danger btn-sm delete">Eliminar</a>
+                    </td>
+                </tr>
+            </tbody>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
+{% endblock %}

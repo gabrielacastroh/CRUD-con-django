@@ -1,0 +1,78 @@
+{% extends "plantilla.html" %} {% block body %}
+
+<div class="mt-2">
+    <h1 class="text-center mb-5">Registrar Estudiante</h1>
+    <div class="row justify-content-center">
+        <form class="row" method="post" action="/registrar-estudiante/">
+            {% csrf_token %}
+            <div class="row justify-content-center">
+                <div class="mb-3 col-4">
+                    <label for="nombre" class="form-label">Nombre</label>
+                    <input name="nombre" type="text" class="form-control" id="nombre" placeholder="Ingresa tu nombre">
+                </div>
+                <div class="mb-3 col-4">
+                    <label for="apellido" class="form-label">Apellido</label>
+                    <input name="apellido" type="text" class="form-control" id="apellido"
+                        placeholder="Ingresa tu apellido">
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="mb-3 col-4">
+                    <label for="documento" class="form-label">Documento</label>
+                    <input name="documento" type="text" class="form-control" id="documento"
+                        placeholder="Ingresa tu No de documento">
+                </div>
+                <div class="mb-4 col-4">
+                    <label for="correo" class="form-label">Correo</label>
+                    <input name="correo" type="text" class="form-control" id="correo" placeholder="Ingresa tu correo">
+                </div>
+
+            </div>
+            <div class="row justify-content-center">
+                <div class="mb-3 col-4">
+                    <label for="progAcademico" class="form-label">Programa Academico</label>
+                    <input name="progAcademico" type="text" class="form-control" id="progAcademico"
+                        placeholder="Ingresa tu programa academico">
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-4 text-center">
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+    <div class="col-12 mt-5">
+        <table class="table table-striped table-light table-bordered-border text-center">
+            <thead>
+                <tr>
+                    <th scope="col">NOMBRE</th>
+                    <th scope="col">APELLIDO</th>
+                    <th scope="col">DOCUMENTO</th>
+                    <th scope="col">CORREO</th>
+                    <th scope="col">PROGRAMA ACADEMICO</th>
+                    <th scope="col">ACCIONES</th>
+                </tr>
+            </thead>
+            <tbody class="student-list">
+                {% for reg in estudiante %}
+                <tr>
+                    <td>{{reg.nombre}}</td>
+                    <td>{{reg.apellido}}</td>
+                    <td>{{reg.numIdentificacion}}</td>
+                    <td>{{reg.correo}}</td>
+                    <td>{{reg.programaAcademico}}</td>
+                    <td>
+                        <a href="/buscar-estudiante/{{reg.id}}" class="btn btn-warning btn-sm edit"
+                            role="button">Editar</a>
+                        <a href="/eliminar-estudiante/{{reg.id}}" class="btn btn-danger btn-sm delete">Eliminar</a>
+                    </td>
+                </tr>
+            </tbody>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends "plantilla.html" %} {% block body %}
+
+<div class="mt-2">
+    <h1 class="text-center mb-5">Editar Clase</h1>
+    <div class="row justify-content-center">
+        <form class="row" method="post" action="/clase/{{clase.id}}">
+            {% csrf_token %}
+            <div class="row justify-content-center">
+                <div class="mb-4 col-4">
+                    <label for="estudiante" class="form-label">Estudiante</label>
+                    <select class="form-select" name="estudiante" id="estudiante">
+                         <option class="invisible" selected value="{{clase.estudiante_id}}"> {{clase.estudiante.nombre}} {{clase.estudiante.apellido}} -- {{clase.estudiante.programaAcademico}}</option>
+                        {% for reg in estudiante %}
+                        <option name="estudiante" value="{{ reg.id }}">
+                            {{ reg.nombre }} {{reg.apellido}} -- {{reg.programaAcademico}}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="mb-4 col-4">
+                    <label for="asignatura" class="form-label">Asignatura</label>
+                    <select class="form-select" name="asignatura" id="asignatura">
+                        <option class="invisible" selected value="{{clase.asignatura_id}}"> {{clase.asignatura.nombre}} -- {{clase.asignatura.salon}} -- {{clase.asignatura.horario}}  -- {{clase.asignatura.profesor}} </option>
+                        {% for reg in asignatura %}
+                        <option name="asignatura_id" value="{{ reg.id }}">
+                            {{ reg.nombre }} -- {{reg.salon}} -- {{reg.horario}} -- {{reg.profesor}}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-4 text-center">
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends "plantilla.html" %} {% block body %}
+
+<div class="mt-2">
+    <h1 class="text-center mb-5">Editar Profesor</h1>
+    <div class="row justify-content-center">
+        <form class="row" method="post" action="/profesor/{{profesor.id}}">
+            {% csrf_token %}
+            <div class="row justify-content-center">
+                <div class="mb-3 col-4">
+                    <label for="nombre" class="form-label">Nombre</label>
+                    <input name="nombre" type="text" class="form-control" id="nombre" placeholder="Ingresa tu nombre" value="{{profesor.nombre}}">
+                </div>
+                <div class="mb-3 col-4">
+                    <label for="apellido" class="form-label">Apellido</label>
+                    <input name="apellido" type="text" class="form-control" id="apellido"
+                        placeholder="Ingresa tu apellido" value="{{profesor.apellido}}">
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="mb-3 col-4">
+                    <label for="documento" class="form-label">Documento</label>
+                    <input name="documento" type="text" class="form-control" id="documento"
+                        placeholder="Ingresa tu No de documento" value="{{profesor.numIdentificacion}}">
+                </div>
+                <div class="mb-4 col-4">
+                    <label for="correo" class="form-label">Correo</label>
+                    <input name="correo" type="text" class="form-control" id="correo" placeholder="Ingresa tu correo" value="{{profesor.correo}}">
+                </div>
+
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-4 text-center">
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+
+{% endblock %}

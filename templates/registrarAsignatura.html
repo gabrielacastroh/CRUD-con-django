@@ -1,0 +1,75 @@
+{% extends "plantilla.html" %} {% block body %}
+
+<div class="mt-2">
+    <h1 class="text-center mb-5">Registrar Asignatura</h1>
+    <div class="row justify-content-center">
+        <form class="row" method="post" action="/registrar-asignatura/">
+            {% csrf_token %}
+            <div class="row justify-content-center">
+                <div class="mb-3 col-4">
+                    <label for="nombre" class="form-label">Nombre</label>
+                    <input name="nombre" type="text" class="form-control" id="nombre" placeholder="Nombre de asignatura">
+                </div>
+                <div class="mb-3 col-4">
+                    <label for="salon" class="form-label">Salón</label>
+                    <input name="salon" type="text" class="form-control" id="salon" placeholder="Ingresa el salón">
+                </div>
+            </div>
+            <div class="row justify-content-center">
+                <div class="mb-3 col-4">
+                    <label for="horario" class="form-label">Horario</label>
+                    <input name="horario" type="text" class="form-control" id="horario"
+                        placeholder="Ingresa el horario">
+                </div>
+                <div class="mb-4 col-4">
+                    <label for="profesor" class="form-label">Profesor</label>
+                    <select class="form-select" name="profesor" id="profesor">
+                        <option selected>--Selecciona el Profesor--</option>
+                        {% for reg in profesor %}
+                        <option name="profesor_id" value="{{ reg.id }}">
+                            {{ reg.nombre }} {{reg.apellido}}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-4 text-center">
+                    <button type="submit" class="btn btn-primary">Enviar</button>
+                </div>
+            </div>
+        </form>
+
+    </div>
+   <div class="col-12 mt-5">
+        <table class="table table-striped table-light table-bordered-border text-center">
+            <thead>
+                <tr>
+                    <th scope="col">NOMBRE</th>
+                    <th scope="col">SALON</th>
+                    <th scope="col">HORARIO</th>
+                    <th scope="col">PROFESOR</th>
+                    <th scope="col">ACCIONES</th>
+                </tr>
+            </thead>
+            <tbody class="student-list">
+                {% for reg in asignatura %}
+                <tr>
+                    <td>{{reg.nombre}}</td>
+                    <td>{{reg.salon}}</td>
+                    <td>{{reg.horario}}</td>
+                    <td>{{reg.profesor}}</td>
+                    <td>
+                        <a href="/buscar-asignatura/{{reg.id}}" class="btn btn-warning btn-sm edit"
+                            role="button">Editar</a>
+                        <a href="/eliminar-asignatura/{{reg.id}}" class="btn btn-danger btn-sm delete">Eliminar</a>
+                    </td>
+                </tr>
+            </tbody>
+            {% endfor %}
+        </table>
+    </div> 
+</div>
+
+{% endblock %}
